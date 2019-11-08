@@ -62,4 +62,11 @@ class DBProvider{
     return users;
   }
 
+  Future<int> deleteAllUsers() async {
+    final db = await database;
+
+    final result = await db.delete('users');
+    return result;
+  }
+
 }

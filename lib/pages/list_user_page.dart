@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_crud/models/user.dart';
 import 'package:flutter_crud/providers/db_provider.dart';
 
-class ListUserPage extends StatelessWidget {
+class ListUserPage extends StatefulWidget {
+
+  @override
+  _ListUserPageState createState() => _ListUserPageState();
+}
+
+class _ListUserPageState extends State<ListUserPage> {
+  final _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
+  List<User> user =[];
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<User>>(
@@ -24,9 +33,18 @@ class ListUserPage extends StatelessWidget {
             ),
           );
         }
-        return ListView(
-          children: _listaMapUsers(context, snapshot.data),
+        return RefreshIndicator(
+          key: _refreshIndicatorKey,
+          onRefresh: (){
+
+          },
+          child:  ListView(
+            children: _listaMapUsers(context, snapshot.data),
+
+          ),
         );
+
+
       },
     );
 //    return ListView(

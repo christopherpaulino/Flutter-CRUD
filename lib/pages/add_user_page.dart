@@ -70,12 +70,6 @@ class AddUserState extends State<AddUserPage>{
                       duration: Duration(milliseconds: 1200),
                       content: Text(
                           'El usuario ${_userController.text} ha sido guardado'),
-                      action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {
-                          // Some code to undo the change.
-                        },
-                      ),
                     );
                     Scaffold.of(context).showSnackBar(snackBar);
                     _formKey.currentState.reset();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_crud/models/menu_items.dart';
 import 'package:flutter_crud/pages/add_user_page.dart';
 import 'package:flutter_crud/pages/list_user_page.dart';
+import 'package:flutter_crud/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget{
 
@@ -35,6 +36,7 @@ class _HomeState extends State<HomePage>{
         ) ,
       ),
       body: _getContentWidget(),
+      floatingActionButton:_actionButton(context) ,
       
     );
   }
@@ -48,6 +50,22 @@ class _HomeState extends State<HomePage>{
     }
     return list;
     
+  }
+
+  FloatingActionButton _actionButton(BuildContext context){
+    if(_seletedPage ==0){
+      return FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed:  (){
+
+          DBProvider.db.deleteAllUsers();
+          setState(() {
+            _seletedPage = _seletedPage;
+          });
+        },
+      );
+    }
+    return null;
   }
 
   Widget _drawerHeader(){
